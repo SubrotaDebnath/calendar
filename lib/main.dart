@@ -1,4 +1,4 @@
-import 'package:calendar/calender.dart';
+import 'package:calendar/my_calender.dart';
 import 'package:calendar/calender_header.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,7 @@ void _settingModalBottomSheet(context) {
         return Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).padding.top * 3,
+              height: MediaQuery.of(context).padding.top * 2,
               // color: Colors.transparent,
             ),
             Container(
@@ -71,7 +71,7 @@ void _settingModalBottomSheet(context) {
                 child: Column(
                   children: [
                     CalenderHeader(),
-                    Calender(),
+                    MyCalender(),
                   ],
                 ),
               ),
