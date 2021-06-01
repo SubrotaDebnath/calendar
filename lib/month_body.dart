@@ -24,7 +24,7 @@ String _getEventTypes({@required year, @required month, @required day}) {
   try {
     type = Utility.events[year.toString()][month.toString()][day.toString()];
   } catch (e) {
-   // print('Event Type Exception: ${e.toString()}');
+    // print('Event Type Exception: ${e.toString()}');
   }
   return type;
 }
@@ -76,7 +76,7 @@ class _MonthBodyState extends State<MonthBody> {
           Container(
             width: double.infinity,
             // height: MediaQuery.of(context).size.height * .5,
-            margin: EdgeInsets.all(8.0),
+            //margin: EdgeInsets.all(0.0),
             //height: 450.0,
             //height: MainAxisSize.min,
             child: GridView.builder(
@@ -85,7 +85,7 @@ class _MonthBodyState extends State<MonthBody> {
               itemCount: _sequentialDates.length,
               physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 10,
+                mainAxisSpacing: 0,
                 crossAxisCount: 7,
                 crossAxisSpacing: 0,
                 //childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 2),
@@ -117,9 +117,9 @@ class _MonthBodyState extends State<MonthBody> {
           '${widget.calendarMonthName}',
           // widget.monthName,
           style: TextStyle(
-            fontSize: 24.0,
+            fontSize: 20.0,
             color: Colors.orange.shade800,
-            fontWeight: FontWeight.w800,
+            fontWeight: FontWeight.w600,
           ),
           textAlign: TextAlign.start,
         ),
@@ -141,7 +141,7 @@ class _MonthBodyState extends State<MonthBody> {
             : Colors.white,
         border: Border(
           top: BorderSide(
-            width: 2.0,
+            width: 1.5,
             color: Colors.grey.shade300,
           ),
         ),
@@ -197,60 +197,62 @@ class _MonthBodyState extends State<MonthBody> {
 //date selector
   Widget _selector(Calendar calendarDate) {
     //var _isVisible = calendarDate.thisMonth ? true: false;\
-   // print('Selected Date ${calendarDate.date}');
+    // print('Selected Date ${calendarDate.date}');
     var selected = calendarDate.date.day != null ? calendarDate.date.day : '';
-    return Stack(
-      fit: StackFit.loose,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            border: Border(
-              top: BorderSide(
-                width: 2.0,
-                color: Colors.grey.shade300,
-              ),
+    return Center(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          border: Border(
+            top: BorderSide(
+              width: 2.0,
+              color: Colors.grey.shade300,
             ),
           ),
         ),
-        Align(
-          alignment: Alignment.topCenter,
-          child: Container(
-            color: Colors.transparent,
-            //margin: EdgeInsets.all(5),
-            child: Container(
-                  height: 30.0,
-                  width: 30.0,
-                  decoration: BoxDecoration(
-                    color: Colors.redAccent,
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color: Colors.transparent),
-                  ),
-                  child: Center(
-                    child: Text(
-                      //'${calendarDate.date.day != null ? calendarDate.date.day : ''}',
-                      selected.toString(),
+        child: Container(
+          //padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.only(bottom: 6.0,top: 8.0),
+          child: Stack(
+            children: [
+              Container(
+                color: Colors.transparent,
+                //margin: EdgeInsets.all(5),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    height: 30.0,
+                    width: 30.0,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade400,
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(color: Colors.transparent),
+                    ),
+                    child: Center(
+                      child: Text(
+                        //'${calendarDate.date.day != null ? calendarDate.date.day : ''}',
+                        selected.toString(),
 
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w900),
+                        style: TextStyle(
+                            color: Colors.redAccent, fontWeight: FontWeight.w900),
+                      ),
                     ),
                   ),
-
-
-            ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Event(
+                  _getEventTypes(
+                      year: calendarDate.date.year,
+                      month: calendarDate.date.month,
+                      day: calendarDate.date.day),
+                ),
+              ),
+            ],
           ),
         ),
-
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Event(
-            _getEventTypes(
-                year: calendarDate.date.year,
-                month: calendarDate.date.month,
-                day: calendarDate.date.day),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

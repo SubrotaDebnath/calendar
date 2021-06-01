@@ -26,7 +26,7 @@ class _CalenderHeaderState extends State<CalenderHeader> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 30.0),
+      padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
       child: Column(
         children: [
           Align(
@@ -35,7 +35,8 @@ class _CalenderHeaderState extends State<CalenderHeader> {
               'Today',
               style: TextStyle(
                 color: Colors.deepOrange,
-                fontSize: 24.0,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
@@ -44,8 +45,9 @@ class _CalenderHeaderState extends State<CalenderHeader> {
             child: Text(
               '- Sep 25th 2021-',
               style: TextStyle(
-                color: Colors.grey.shade800,
-                fontSize: 24.0,
+                color: Colors.grey.shade700,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
