@@ -118,8 +118,8 @@ class _MonthBodyState extends State<MonthBody> {
           // widget.monthName,
           style: TextStyle(
             fontSize: 20.0,
-            color: Colors.orange.shade800,
-            fontWeight: FontWeight.w600,
+            color: Colors.orange.shade900,
+            fontWeight: FontWeight.w800,
           ),
           textAlign: TextAlign.start,
         ),
